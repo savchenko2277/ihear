@@ -1,0 +1,68 @@
+@use 'lib' as *;
+
+.brands {
+	background: var(--surface);
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		gap: 16px;
+	}
+
+	&__card {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 120px;
+		padding: 24px;
+		background: var(--white);
+		border: 1px solid var(--line);
+		border-radius: var(--radius);
+		transition: transform var(--tr), box-shadow var(--tr), border-color var(--tr);
+
+		&:hover {
+			transform: translateY(-6px);
+			border-color: rgba(var(--accent-rgb), 0.4);
+			box-shadow: var(--shadow);
+
+			.brands__logo img {
+				transform: scale(1.06);
+			}
+		}
+	}
+
+	&__logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 52px;
+
+		img {
+			display: block;
+			height: 100%;
+			width: auto;
+			max-width: 100%;
+			object-fit: contain;
+			transition: transform var(--tr);
+		}
+	}
+
+	/* Адаптив */
+	@include media("<=lg") {
+		&__grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@include media("<=xs") {
+		&__grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 12px;
+		}
+
+		&__card {
+			height: 96px;
+			padding: 18px;
+		}
+	}
+}

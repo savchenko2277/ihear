@@ -1,0 +1,25 @@
+@use 'lib' as *;
+
+.seniors {
+	background: var(--surface);
+
+	&__inner {
+		max-width: 860px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	&__title {
+		margin-bottom: 24px;
+	}
+
+	&__text {
+		font-size: fluid-rem(17, 15);
+		line-height: 1.7;
+		color: var(--muted);
+
+		& + & {
+			margin-top: 16px;
+		}
+	}
+}

@@ -1,0 +1,194 @@
+@use 'lib' as *;
+
+@use "../blocks/**/*.scss";
+
+// Подключение шрифтов
+
+// @include font-face("filename", "name", value);
+
+body, html {
+	background-color: var(--background);
+	font-size: var(--size);
+	color: var(--text);
+	font-family: var(--font);
+	line-height: 1.5;
+	font-weight: 400;
+	display: flex;
+	flex-flow: column nowrap;
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+html.no-scroll,
+html.no-scroll body {
+	overflow: hidden;
+}
+
+/* Контейнер */
+.container {
+	width: 100%;
+	max-width: var(--container);
+	margin-inline: auto;
+	padding-inline: var(--gap);
+}
+
+/* Основной контент (с учётом fixed-хедера) */
+.main {
+	padding-top: var(--header-h, 136px);
+}
+
+/* Типографика */
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 800;
+	line-height: 1.15;
+	color: var(--dark);
+	letter-spacing: -0.02em;
+}
+
+.h1 { font-size: fluid-rem(48, 30); font-weight: 800; color: var(--dark); letter-spacing: -0.03em; }
+.h2 { font-size: fluid-rem(40, 26); font-weight: 800; color: var(--dark); letter-spacing: -0.03em; }
+.h3 { font-size: fluid-rem(26, 20); font-weight: 800; color: var(--dark); letter-spacing: -0.02em; }
+
+/* Кнопки */
+.btn {
+	@include flex-center;
+	gap: 10px;
+	width: fit-content;
+	padding: 15px 28px;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 1;
+	border-radius: 100px;
+	color: var(--white);
+	background: var(--accent);
+	cursor: pointer;
+	transition: background var(--tr), transform var(--tr), box-shadow var(--tr);
+	white-space: nowrap;
+
+	&:hover {
+		background: var(--accent-hover);
+		box-shadow: var(--shadow-accent);
+		transform: translateY(-2px);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+
+	&_ghost {
+		background: transparent;
+		color: var(--text);
+		border: 1px solid var(--line);
+
+		&:hover {
+			background: var(--dark);
+			border-color: var(--dark);
+			color: var(--white);
+			box-shadow: var(--shadow);
+		}
+	}
+
+	&_dark {
+		background: var(--dark);
+
+		&:hover {
+			background: var(--accent);
+			box-shadow: var(--shadow-accent);
+		}
+	}
+
+	&_big {
+		padding: 20px 48px;
+		font-size: 18px;
+	}
+}
+
+/* Секции */
+.section {
+	padding: fluid-rem(88, 56) 0;
+
+	&__head {
+		max-width: 760px;
+		margin-bottom: 48px;
+
+		&_center {
+			margin-inline: auto;
+			text-align: center;
+		}
+	}
+
+	&__title {
+		font-size: fluid-rem(40, 26);
+		font-weight: 800;
+		line-height: 1.12;
+		letter-spacing: -0.03em;
+		color: var(--dark);
+	}
+
+	&__subtitle {
+		margin-top: 14px;
+		font-size: fluid-rem(17, 15);
+		line-height: 1.6;
+		color: var(--muted);
+	}
+}
+
+/* Появление блоков при скролле */
+html.js [data-animation] {
+	opacity: 0;
+	transform: translateY(32px);
+	transition: opacity var(--tr-slow), transform var(--tr-slow);
+	transition-delay: var(--delay, 0ms);
+	will-change: opacity, transform;
+
+	&.showed {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.js [data-animation] {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
+/* Точки-пагинация слайдеров */
+.slider-dots {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+.slider-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	background: var(--line);
+	transition: width var(--tr), background var(--tr);
+
+	&.active {
+		width: 24px;
+		background: var(--accent);
+	}
+}
+
+.footer {
+	flex: 0 0 auto; 
+	margin-top: auto; 
+}
+
+.sprite {
+	display: none;
+}
+
+em { font-style: italic; }
+strong { font-weight: bold; }

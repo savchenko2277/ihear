@@ -1,0 +1,165 @@
+@use 'lib' as *;
+
+.reviews {
+	overflow: hidden;
+
+	&__wrap {
+		position: relative;
+	}
+
+	&__track {
+		display: flex;
+		gap: 24px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		padding-bottom: 14px;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	&__card {
+		flex: 0 0 auto;
+		width: calc((100% - 48px) / 3);
+		scroll-snap-align: start;
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		padding: 30px;
+		background: var(--surface);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
+	}
+
+	&__quote {
+		width: 42px;
+		height: 42px;
+		border-radius: 12px;
+		display: grid;
+		place-items: center;
+		background: var(--accent-soft);
+		color: var(--accent);
+
+		svg {
+			width: 22px;
+			height: 22px;
+		}
+	}
+
+	&__text {
+		font-size: 15px;
+		line-height: 1.65;
+		color: var(--text);
+		flex: 1;
+	}
+
+	&__footer {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		padding-top: 18px;
+		border-top: 1px solid var(--line);
+	}
+
+	&__avatar {
+		@include flex-center;
+		width: 44px;
+		height: 44px;
+		flex: 0 0 auto;
+		border-radius: 50%;
+		font-size: 17px;
+		font-weight: 800;
+		color: var(--white);
+		background: var(--accent);
+	}
+
+	&__meta {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	&__name {
+		font-size: 15px;
+		font-weight: 800;
+		color: var(--dark);
+	}
+
+	&__date {
+		font-size: 13px;
+		color: var(--muted);
+	}
+
+	&__link {
+		margin-left: auto;
+		font-size: 14px;
+		font-weight: 700;
+		color: var(--accent);
+		transition: opacity var(--tr);
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+
+	&__arrow {
+		position: absolute;
+		top: calc(50% - 12px);
+		transform: translateY(-50%);
+		z-index: 2;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		display: grid;
+		place-items: center;
+		color: var(--dark);
+		background: var(--white);
+		border: 1px solid var(--line);
+		box-shadow: var(--shadow-sm);
+		transition: background var(--tr), color var(--tr), border-color var(--tr), box-shadow var(--tr);
+
+		svg {
+			width: 22px;
+			height: 22px;
+		}
+
+		&:hover {
+			background: var(--accent);
+			border-color: var(--accent);
+			color: var(--white);
+			box-shadow: var(--shadow-accent);
+		}
+
+		&_prev {
+			left: -10px;
+		}
+
+		&_next {
+			right: -10px;
+		}
+	}
+
+	&__dots {
+		margin-top: 24px;
+	}
+
+	@include media("<=sm") {
+		&__arrow {
+			display: none;
+		}
+
+		&__track {
+			gap: 16px;
+			margin-inline: calc(var(--gap) * -1);
+			padding-inline: var(--gap);
+			scroll-padding-inline: var(--gap);
+		}
+
+		&__card {
+			width: min(400px, 88vw);
+			padding: 24px;
+		}
+	}
+}

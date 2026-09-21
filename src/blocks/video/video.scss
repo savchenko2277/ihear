@@ -1,0 +1,71 @@
+@use 'lib' as *;
+
+.video {
+	position: relative;
+	overflow: hidden;
+	background:
+		radial-gradient(900px 420px at 50% -10%, rgba(var(--accent-rgb), 0.09), transparent 60%),
+		var(--background);
+
+	.container {
+		position: relative;
+		z-index: 2;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 140px;
+		left: -130px;
+		width: 340px;
+		height: 340px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(var(--accent-rgb), 0.1), transparent 70%);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 40px;
+		right: -110px;
+		width: 300px;
+		height: 300px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(var(--accent-rgb), 0.08), transparent 70%);
+	}
+
+	&__badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 16px;
+		margin-bottom: 18px;
+		font-size: 14px;
+		font-weight: 700;
+		color: var(--accent-dark);
+		background: var(--accent-soft);
+		border-radius: 100px;
+
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+	}
+
+	&__frame {
+		max-width: 960px;
+		margin: 0 auto;
+		aspect-ratio: 16 / 9;
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		background: #000;
+		box-shadow: var(--shadow);
+
+		iframe {
+			display: block;
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+	}
+}

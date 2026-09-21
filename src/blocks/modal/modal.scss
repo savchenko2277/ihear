@@ -1,0 +1,147 @@
+@use 'lib' as *;
+
+.modal {
+	position: fixed;
+	inset: 0;
+	z-index: 200;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	padding: var(--gap);
+	background: rgba(23, 24, 29, 0.55);
+	backdrop-filter: blur(4px);
+
+	&__body {
+		position: relative;
+		width: 100%;
+		max-width: 460px;
+		padding: 40px;
+		background: var(--white);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow);
+		animation: modalIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	&_self &__body {
+		max-width: 560px;
+		padding: 20px;
+	}
+
+	&_self &__content img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: var(--radius);
+	}
+
+	&__close {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+		width: 40px;
+		height: 40px;
+		border-radius: 12px;
+		background: var(--surface);
+		transition: background var(--tr), transform var(--tr);
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 18px;
+			height: 2px;
+			border-radius: 2px;
+			background: var(--dark);
+			transition: background var(--tr);
+		}
+
+		&::before { transform: translate(-50%, -50%) rotate(45deg); }
+		&::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+		&:hover {
+			background: var(--accent);
+			transform: rotate(90deg);
+
+			&::before,
+			&::after {
+				background: var(--white);
+			}
+		}
+	}
+}
+
+@keyframes modalIn {
+	from {
+		opacity: 0;
+		transform: translateY(24px) scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* Форма обратного звонка */
+.callback {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	&__title {
+		font-size: 26px;
+		font-weight: 800;
+		color: var(--dark);
+		letter-spacing: -0.02em;
+	}
+
+	&__text {
+		font-size: 14px;
+		color: var(--muted);
+		line-height: 1.5;
+	}
+
+	&__field {
+		display: block;
+
+		input {
+			width: 100%;
+			padding: 14px 18px;
+			font-size: 15px;
+			color: var(--text);
+			background: var(--surface);
+			border: 1px solid transparent;
+			border-radius: 12px;
+			transition: border-color var(--tr), box-shadow var(--tr), background var(--tr);
+
+			&::placeholder {
+				color: var(--muted);
+			}
+
+			&:focus {
+				background: var(--white);
+				border-color: var(--accent);
+				box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.12);
+			}
+
+			&.error {
+				border-color: #e5484d;
+				background: #fdf0ef;
+			}
+		}
+	}
+
+	&__submit {
+		justify-content: center;
+		width: 100%;
+		padding: 16px 28px;
+		font-size: 15px;
+	}
+
+	&__note {
+		font-size: 12px;
+		color: var(--muted);
+		text-align: center;
+	}
+}

@@ -1,0 +1,73 @@
+$breakpoints: (
+	'xxxs': 360px,
+	'xxs': 480px,
+	'xs': 640px,
+	'sm': 780px,
+	'md': 960px,
+	'lg': 1100px,
+	'xlg': 1280px,
+	'xxlg': 1440px,
+	'xxxlg': 1680px,
+	'xxxxlg': 1928px
+) !default;
+
+$matches: (
+	xxxxlg: 1920,
+	xxxlg: 1680,
+	xxlg: 1440,
+	xlg: 1280,
+	lg: 1100,
+	md: 960,
+	sm: 780,
+	xs: 640,
+	xxs: 480,
+	xxxs: 360
+);
+
+:root {
+	/* Базовые */
+	--size: 16px;
+	--background: #ffffff;
+	--surface: #f6f6f4;
+	--text: #26272e;
+	--muted: #6d7078;
+
+	/* Акцент */
+	--accent: #f0594d;
+	--accent-rgb: 240, 89, 77;
+	--accent-hover: #d84a3f;
+	--accent-soft: #fdeeec;
+	--accent-dark: #b83a31;
+
+	/* Тёмный */
+	--dark: #17181d;
+	--dark-soft: #1f2128;
+
+	/* Сервисные */
+	--line: #e9e9e6;
+	--white: #ffffff;
+
+	/* Шрифт */
+	--font: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+	/* Геометрия */
+	--container: 1400px;
+	--gap: 24px;
+	--header-h: 136px;
+	--radius: 18px;
+	--radius-sm: 12px;
+	--radius-lg: 28px;
+
+	/* Тени */
+	--shadow-sm: 0 2px 10px rgba(23, 24, 29, 0.06);
+	--shadow: 0 16px 40px rgba(23, 24, 29, 0.10);
+	--shadow-accent: 0 14px 30px rgba(240, 89, 77, 0.28);
+
+	/* Переходы */
+	--tr: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+	--tr-slow: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+	@media screen and (max-width: 480px) {
+		--gap: 16px;
+	}
+}

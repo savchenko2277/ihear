@@ -1,0 +1,150 @@
+@use 'lib' as *;
+
+.certs {
+	overflow: hidden;
+	background: var(--surface);
+
+	&__wrap {
+		position: relative;
+	}
+
+	&__track {
+		display: flex;
+		gap: 20px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		padding-bottom: 14px;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	&__item {
+		position: relative;
+		flex: 0 0 auto;
+		width: calc((100% - 100px) / 6);
+		aspect-ratio: 500 / 690;
+		scroll-snap-align: start;
+		border: 1px solid var(--line);
+		border-radius: var(--radius);
+		background: var(--white);
+		overflow: hidden;
+		transition: transform var(--tr), box-shadow var(--tr), border-color var(--tr);
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform var(--tr);
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			background: rgba(23, 24, 29, 0.32);
+			opacity: 0;
+			transition: opacity var(--tr);
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: 2;
+			width: 52px;
+			height: 52px;
+			border-radius: 50%;
+			background-color: var(--accent);
+			background-image: svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>');
+			background-size: 24px 24px;
+			background-position: center;
+			background-repeat: no-repeat;
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0.7);
+			transition: opacity var(--tr), transform var(--tr);
+		}
+
+		&:hover {
+			transform: translateY(-6px);
+			border-color: rgba(var(--accent-rgb), 0.4);
+			box-shadow: var(--shadow);
+
+			img {
+				transform: scale(1.06);
+			}
+
+			&::after {
+				opacity: 1;
+			}
+
+			&::before {
+				opacity: 1;
+				transform: translate(-50%, -50%) scale(1);
+			}
+		}
+	}
+
+	&__dots {
+		margin-top: 24px;
+	}
+
+	&__arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 2;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		display: grid;
+		place-items: center;
+		color: var(--dark);
+		background: var(--white);
+		border: 1px solid var(--line);
+		box-shadow: var(--shadow-sm);
+		transition: background var(--tr), color var(--tr), border-color var(--tr), box-shadow var(--tr);
+
+		svg {
+			width: 22px;
+			height: 22px;
+		}
+
+		&:hover {
+			background: var(--accent);
+			border-color: var(--accent);
+			color: var(--white);
+			box-shadow: var(--shadow-accent);
+		}
+
+		&_prev {
+			left: -10px;
+		}
+
+		&_next {
+			right: -10px;
+		}
+	}
+
+	@include media("<=sm") {
+		&__arrow {
+			display: none;
+		}
+
+		&__track {
+			gap: 14px;
+			margin-inline: calc(var(--gap) * -1);
+			padding-inline: var(--gap);
+			scroll-padding-inline: var(--gap);
+		}
+
+		&__item {
+			width: 180px;
+		}
+	}
+}

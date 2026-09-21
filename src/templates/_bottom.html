@@ -1,0 +1,115 @@
+<footer class="footer"> 
+	<div class="container">
+		<div class="footer__top">
+			<div class="footer__brand">
+				<a class="footer__logo" href="/">
+					<span class="footer__logo-icon" aria-hidden="true">
+						<svg viewBox="0 0 24 24" fill="none">
+							<path d="M4 14.5a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+							<path d="M7.5 14.5a4.5 4.5 0 0 1 9 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+							<circle cx="12" cy="17" r="1.5" fill="currentColor"/>
+						</svg>
+					</span>
+					<span>Я&nbsp;Слышу!</span>
+				</a>
+				<p class="footer__about">Сурдологический центр и интернет-магазин слуховых аппаратов в Москве. Бесплатный подбор, настройка и доставка.</p>
+				<ul class="footer__pay">
+					<li>Visa</li>
+					<li>Mastercard</li>
+					<li>МИР</li>
+				</ul>
+			</div>
+
+			<div class="footer__col">
+				<div class="footer__title">Каталог</div>
+				<ul class="footer__list">
+					<li><a href="/catalog/siemens/">Слуховые аппараты Siemens</a></li>
+					<li><a href="/catalog/unitron/">Слуховые аппараты Unitron</a></li>
+					<li><a href="/catalog/widex/">Слуховые аппараты Widex</a></li>
+					<li><a href="/catalog/phonak/">Слуховые аппараты Phonak</a></li>
+					<li><a href="/catalog/resound/">Слуховые аппараты ReSound</a></li>
+					<li><a href="/catalog/">Все аппараты</a></li>
+				</ul>
+			</div>
+
+			<div class="footer__col">
+				<div class="footer__title">Информация</div>
+				<ul class="footer__list">
+					<li><a href="/o-nas/">О компании</a></li>
+					<li><a href="/uslugi/">Услуги</a></li>
+					<li><a href="/price/">Прайс-лист</a></li>
+					<li><a href="/info/">Статьи</a></li>
+					<li><a href="/help/">Вопрос-ответ</a></li>
+					<li><a href="/novosti/">Новости</a></li>
+					<li><a href="/kontakty/">Контакты</a></li>
+				</ul>
+			</div>
+
+			<div class="footer__col footer__contacts">
+				<div class="footer__title">Контакты</div>
+				<ul class="footer__list footer__list_contacts">
+					<li>
+						<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z" stroke="currentColor" stroke-width="1.8"/>
+							<circle cx="12" cy="10" r="2.6" stroke="currentColor" stroke-width="1.8"/>
+						</svg>
+						<span>127006, г. Москва, Малый Путинковский пер., 1/2 стр 1, 2 этаж, каб. 200</span>
+					</li>
+					<li>
+						<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+							<path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+						<span>Пн–Пт 10:00–19:00, выходные по записи</span>
+					</li>
+					<li>
+						<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+						</svg>
+						<a href="tel:+74956423970">+7 (495) 642-39-70</a>
+					</li>
+					<li>
+						<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
+							<path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+						</svg>
+						<a href="mailto:info@i-hear.ru">info@i-hear.ru</a>
+					</li>
+				</ul>
+				<button class="btn footer__cta" type="button" data-modal="#callback">Перезвоните мне</button>
+			</div>
+		</div>
+
+		<div class="footer__bottom">
+			<p class="footer__copy">© 2026 I-Hear.ru — Слухопротезирование, продажа слуховых аппаратов в Москве</p>
+			<div class="footer__bottom-links">
+				<a href="/site-maps/">Карта сайта</a>
+				<a href="http://vashpartner.ru/" target="_blank" rel="noopener">Создание и продвижение сайта</a>
+			</div>
+		</div>
+
+		<p class="footer__disclaimer">Вся информация на сайте www.i-hear.ru носит справочный характер и ни в коем случае не является публичной офертой. Точная и актуальная стоимость, а также информация о наличии — обязательно уточняется по телефону!</p>
+	</div>
+</footer> 
+
+<!-- Модальное окно «Перезвоните мне» -->
+<div id="callback" hidden>
+	<form class="callback" novalidate>
+		<div class="callback__title">Перезвоните мне</div>
+		<p class="callback__text">Оставьте номер телефона — перезвоним в течение 15 минут в рабочее время.</p>
+		<label class="callback__field">
+			<input type="text" name="name" placeholder="Ваше имя" data-rules="req,name">
+		</label>
+		<label class="callback__field">
+			<input type="tel" name="phone" placeholder="+7 (___) ___-__-__" data-rules="req,phone">
+		</label>
+		<button class="btn callback__submit" type="submit">Жду звонка</button>
+		<p class="callback__note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+	</form>
+</div>
+
+<!-- @@include("_sprite.svg") -->
+<script src="fancybox.umd.js?v=0"></script> 
+<script src="js/common.js?v=0"></script> 
+</body> 
+</html>

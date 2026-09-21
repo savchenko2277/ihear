@@ -1,0 +1,85 @@
+@use 'lib' as *;
+
+.benefits {
+	&__grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 56px;
+		align-items: center;
+	}
+
+	&__title {
+		margin-bottom: 18px;
+	}
+
+	&__text {
+		font-size: fluid-rem(17, 15);
+		line-height: 1.7;
+		color: var(--muted);
+	}
+
+	&__card {
+		padding: 36px;
+		background: var(--surface);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
+	}
+
+	&__card-title {
+		margin-bottom: 24px;
+		font-size: fluid-rem(26, 21);
+		font-weight: 800;
+		line-height: 1.25;
+		letter-spacing: -0.02em;
+		color: var(--dark);
+
+		span {
+			color: var(--accent);
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	&__item {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		font-size: 15px;
+		line-height: 1.45;
+		color: var(--text);
+	}
+
+	&__check {
+		@include flex-center;
+		width: 24px;
+		height: 24px;
+		flex: 0 0 auto;
+		margin-top: 1px;
+		border-radius: 50%;
+		background: var(--accent);
+		color: var(--white);
+
+		svg {
+			width: 14px;
+			height: 14px;
+		}
+	}
+
+	/* Адаптив */
+	@include media("<=md") {
+		&__grid {
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+	}
+
+	@include media("<=xs") {
+		&__card {
+			padding: 24px;
+		}
+	}
+}

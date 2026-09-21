@@ -1,0 +1,382 @@
+@use 'lib' as *;
+
+.header {
+	$self: &;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	background: var(--white);
+
+	/* Обёртка top + main */
+	&__wrap {
+		display: grid;
+		grid-template-rows: 1fr max-content;
+		transition: grid-template-rows var(--tr);
+	}
+
+	&.is-scrolled &__wrap {
+		grid-template-rows: 0fr max-content;
+	}
+
+	/* Верхняя информационная панель */
+	&__top {
+		overflow: hidden;
+		min-height: 0;
+		background: var(--dark);
+		color: rgba(255, 255, 255, 0.78);
+		font-size: 13px;
+
+		&-inner {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px 32px;
+			min-height: 40px;
+			flex-wrap: wrap;
+			padding-block: 6px;
+		}
+
+		&-item {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		&-icon {
+			width: 16px;
+			height: 16px;
+			flex: 0 0 auto;
+			color: var(--accent);
+		}
+	}
+
+	/* Основная панель */
+	&__main {
+		background: var(--white);
+		border-bottom: 1px solid transparent;
+		transition: box-shadow var(--tr), border-color var(--tr);
+	}
+
+	&.is-scrolled &__main {
+		box-shadow: var(--shadow-sm);
+		border-bottom-color: var(--line);
+	}
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		gap: 32px;
+		min-height: 84px;
+	}
+
+	/* Логотип */
+	&__logo {
+		flex: 0 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+		line-height: 0;
+
+		img {
+			display: block;
+			height: 34px;
+			width: auto;
+		}
+
+		&-desc {
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 1.2;
+			color: var(--muted);
+			white-space: nowrap;
+		}
+	}
+
+	/* Навигация */
+	&__nav {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		margin-inline: auto;
+	}
+
+	&__link {
+		position: relative;
+		padding: 10px 14px;
+		font-size: 15px;
+		font-weight: 600;
+		color: var(--dark);
+		border-radius: 100px;
+		transition: color var(--tr), background var(--tr);
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 14px;
+			right: 14px;
+			bottom: 4px;
+			height: 2px;
+			border-radius: 2px;
+			background: var(--accent);
+			transform: scaleX(0);
+			transform-origin: left;
+			transition: transform var(--tr);
+		}
+
+		&:hover {
+			color: var(--accent);
+
+			&::after {
+				transform: scaleX(1);
+			}
+		}
+	}
+
+	/* Действия */
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		flex: 0 0 auto;
+	}
+
+	&__phone {
+		font-size: 17px;
+		font-weight: 800;
+		color: var(--dark);
+		white-space: nowrap;
+		transition: color var(--tr);
+
+		&:hover {
+			color: var(--accent);
+		}
+	}
+
+	&__cta {
+		padding: 13px 22px;
+		font-size: 14px;
+	}
+
+	/* Бургер */
+	&__burger {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 5px;
+		width: 46px;
+		height: 46px;
+		border-radius: 12px;
+		background: var(--surface);
+		transition: background var(--tr);
+
+		span {
+			display: block;
+			width: 20px;
+			height: 2px;
+			border-radius: 2px;
+			background: var(--dark);
+			transition: transform var(--tr), opacity var(--tr);
+		}
+	}
+
+	&.opened &__burger {
+		background: var(--accent-soft);
+
+		span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+		span:nth-child(2) { opacity: 0; }
+		span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+	}
+
+	/* Оверлей мобильного меню */
+	&::after {
+		content: "";
+		position: fixed;
+		inset: 0;
+		z-index: 55;
+		background: rgba(23, 24, 29, 0.45);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity var(--tr);
+	}
+
+	&.opened::after {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	/* Мобильное меню */
+	&__mobile {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 60;
+		width: min(360px, 100%);
+		padding: 28px 24px;
+		background: var(--white);
+		box-shadow: var(--shadow);
+		transform: translateX(100%);
+		transition: transform var(--tr);
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+
+		&-close {
+			position: relative;
+			align-self: flex-end;
+			width: 44px;
+			height: 44px;
+			border-radius: 12px;
+			background: var(--surface);
+			transition: background var(--tr), transform var(--tr);
+
+			&::before,
+			&::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 20px;
+				height: 2px;
+				border-radius: 2px;
+				background: var(--dark);
+				transition: background var(--tr);
+			}
+
+			&::before { transform: translate(-50%, -50%) rotate(45deg); }
+			&::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+			&:hover {
+				background: var(--accent);
+				transform: rotate(90deg);
+
+				&::before,
+				&::after {
+					background: var(--white);
+				}
+			}
+		}
+
+		&-nav {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+			margin-top: 20px;
+
+			.header__nav {
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+				margin: 0;
+			}
+
+			.header__link {
+				padding: 14px 16px;
+				font-size: 17px;
+				font-weight: 700;
+				border-radius: 12px;
+
+				&::after {
+					display: none;
+				}
+
+				&:hover {
+					background: var(--accent-soft);
+					color: var(--accent);
+				}
+			}
+		}
+
+		&-bottom {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			margin-top: auto;
+			padding-top: 32px;
+
+			.header__actions {
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+				gap: 16px;
+			}
+
+			.header__phone {
+				display: block;
+				font-size: 20px;
+			}
+
+			.header__cta {
+				justify-content: center;
+				width: 100%;
+			}
+		}
+	}
+
+	&.opened &__mobile {
+		transform: translateX(0);
+	}
+
+	/* Адаптив */
+	@include media("<=xlg") {
+		&__phone {
+			display: none;
+		}
+	}
+
+	@include media("<=lg") {
+		&__inner {
+			gap: 20px;
+		}
+
+		&__link {
+			padding: 10px 10px;
+			font-size: 14px;
+
+			&::after {
+				left: 10px;
+				right: 10px;
+			}
+		}
+
+		&__phone {
+			font-size: 15px;
+		}
+	}
+
+	@include media("<=md") {
+		&__top {
+			display: none;
+		}
+
+		&__burger {
+			display: flex;
+			margin-left: auto;
+		}
+
+		&__inner {
+			min-height: 72px;
+		}
+	}
+
+	@include media("<=xs") {
+		&__mobile {
+			width: 100%;
+		}
+	}
+
+	@include media("<=xxs") {
+		&__top-inner {
+			justify-content: center;
+			text-align: center;
+		}
+
+		&__logo img {
+			height: 30px;
+		}
+	}
+}
