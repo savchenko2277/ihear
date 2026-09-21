@@ -11,11 +11,17 @@
 	background: rgba(23, 24, 29, 0.55);
 	backdrop-filter: blur(4px);
 
+	@include flex-center;
+
+	&_callback {
+		display: flex !important;
+	}
+
 	&__body {
 		position: relative;
 		width: 100%;
 		max-width: 460px;
-		padding: 40px;
+		padding: fluid(40px, 24px);
 		background: var(--white);
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow);
@@ -132,11 +138,8 @@
 		}
 	}
 
-	&__submit {
-		justify-content: center;
+	&__submit.btn {
 		width: 100%;
-		padding: 16px 28px;
-		font-size: 15px;
 	}
 
 	&__note {
