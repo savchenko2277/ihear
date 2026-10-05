@@ -3,6 +3,7 @@ export const header = () => {
 	if (!node) return;
 
 	const inner = node.querySelector(".header__inner");
+	const navBar = node.querySelector(".header__nav-bar .container");
 	const nav = node.querySelector(".header__nav");
 	const actions = node.querySelector(".header__actions");
 	const burger = node.querySelector(".header__burger");
@@ -30,8 +31,8 @@ export const header = () => {
 			mobileNav?.appendChild(nav);
 			mobileBottom?.appendChild(actions);
 		} else {
-			inner.insertBefore(nav, burger);
-			inner.insertBefore(actions, burger);
+			navBar?.appendChild(nav);
+			inner?.insertBefore(actions, burger);
 			closeMenu();
 		}
 	};

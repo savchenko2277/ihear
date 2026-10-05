@@ -9,34 +9,14 @@
 	z-index: 100;
 	background: var(--white);
 
-	/* Обёртка top + main */
-	&__wrap {
-		display: grid;
-		grid-template-rows: 1fr max-content;
-		transition: grid-template-rows var(--tr);
-	}
-
-	&.is-scrolled &__wrap {
-		grid-template-rows: 0fr max-content;
-	}
-
-	/* Верхняя информационная панель */
-	&__top {
-		overflow: hidden;
-		min-height: 0;
-		background: var(--dark);
-		color: rgba(255, 255, 255, 0.78);
+	/* Информация (адрес + график) — объединена с основной панелью */
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
 		font-size: 13px;
-
-		&-inner {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 16px 32px;
-			min-height: 40px;
-			flex-wrap: wrap;
-			padding-block: 6px;
-		}
+		line-height: 1.4;
+		color: var(--muted);
 
 		&-item {
 			display: flex;
@@ -45,8 +25,8 @@
 		}
 
 		&-icon {
-			width: 16px;
-			height: 16px;
+			width: 15px;
+			height: 15px;
 			flex: 0 0 auto;
 			color: var(--accent);
 		}
@@ -95,12 +75,23 @@
 		}
 	}
 
-	/* Навигация */
+	/* Навигация (отдельная нижняя полоса) */
+	&__nav-bar {
+		border-top: 1px solid var(--line);
+		background: var(--surface);
+
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 52px;
+		}
+	}
+
 	&__nav {
 		display: flex;
 		align-items: center;
 		gap: 4px;
-		margin-inline: auto;
 	}
 
 	&__link {
@@ -158,6 +149,43 @@
 	&__cta {
 		padding: 13px 22px;
 		font-size: 14px;
+	}
+
+	/* Контакты (телефон + мессенджеры) */
+	&__contacts {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 8px;
+		flex: 0 0 auto;
+		margin-left: auto;
+	}
+
+	&__messengers {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__messenger {
+		@include flex-center;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: var(--surface);
+		color: var(--dark);
+		transition: transform var(--tr), background var(--tr);
+
+		svg {
+			width: 22px;
+			height: 22px;
+			display: block;
+		}
+
+		&:hover {
+			transform: translateY(-2px);
+			background: var(--accent-soft);
+		}
 	}
 
 	/* Бургер */
@@ -323,6 +351,13 @@
 
 	/* Адаптив */
 	@include media("<=xlg") {
+		&__messengers {
+			display: none;
+		}
+	}
+
+	/* На планшетах (961–1280) прячем телефон, чтобы не переполнять шапку */
+	@include media(">md", "<=xlg") {
 		&__phone {
 			display: none;
 		}
@@ -349,17 +384,30 @@
 	}
 
 	@include media("<=md") {
-		&__top {
+		&__info {
 			display: none;
+		}
+
+		&__nav-bar {
+			display: none;
+		}
+
+		&__messengers {
+			display: none;
+		}
+
+		&__phone {
+			font-size: 16px;
 		}
 
 		&__burger {
 			display: flex;
-			margin-left: auto;
+			margin-left: 0;
 		}
 
 		&__inner {
 			min-height: 72px;
+			gap: 12px;
 		}
 	}
 
@@ -370,11 +418,6 @@
 	}
 
 	@include media("<=xxs") {
-		&__top-inner {
-			justify-content: center;
-			text-align: center;
-		}
-
 		&__logo img {
 			height: 30px;
 		}

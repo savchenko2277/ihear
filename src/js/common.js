@@ -26,9 +26,8 @@ const setHeaderHeight = () => {
 	const header = document.querySelector('.header');
 	if (!header) return;
 
-	const top = header.querySelector('.header__top');
 	const main = header.querySelector('.header__main');
-	const h = (top ? top.scrollHeight : 0) + (main ? main.offsetHeight : 0);
+	const h = main ? main.offsetHeight : 0;
 
 	document.documentElement.style.setProperty('--header-h', `${h}px`);
 }

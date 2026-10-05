@@ -126,6 +126,33 @@
 		margin-top: 24px;
 	}
 
+	/* Мессенджеры в футере */
+	&__messengers {
+		display: flex;
+		gap: 10px;
+		margin-top: 20px;
+
+		a {
+			@include flex-center;
+			width: 44px;
+			height: 44px;
+			border-radius: 12px;
+			background: rgba(255, 255, 255, 0.08);
+			color: var(--white);
+			transition: background var(--tr), transform var(--tr);
+
+			svg {
+				width: 24px;
+				height: 24px;
+			}
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.16);
+				transform: translateY(-2px);
+			}
+		}
+	}
+
 	/* Нижняя часть */
 	&__bottom {
 		display: flex;
