@@ -349,18 +349,64 @@
 		transform: translateX(0);
 	}
 
+	/* Контакты в мобильном меню */
+	&__mobile-contacts {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-top: 24px;
+		padding-top: 24px;
+		border-top: 1px solid var(--line);
+	}
+
+	&__mobile-phone {
+		font-size: 22px;
+		font-weight: 800;
+		color: var(--dark);
+		transition: color var(--tr);
+
+		&:hover {
+			color: var(--accent);
+		}
+	}
+
+	&__mobile-messengers {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&__mobile-messenger {
+		@include flex-center;
+		width: 44px;
+		height: 44px;
+		border-radius: 12px;
+		background: var(--surface);
+		color: var(--dark);
+
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+
+		&:hover {
+			background: var(--accent-soft);
+		}
+	}
+
 	/* Адаптив */
-	@include media("<=xlg") {
+	@include media("<=md") {
 		&__messengers {
+			display: none;
+		}
+		&__phone {
 			display: none;
 		}
 	}
 
 	/* На планшетах (961–1280) прячем телефон, чтобы не переполнять шапку */
 	@include media(">md", "<=xlg") {
-		&__phone {
-			display: none;
-		}
+		
 	}
 
 	@include media("<=lg") {
